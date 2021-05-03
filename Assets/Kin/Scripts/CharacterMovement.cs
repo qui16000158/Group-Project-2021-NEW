@@ -91,6 +91,7 @@ public class CharacterMovement : NetworkBehaviour
     private void FixedUpdate()
     {
         if (!isLocalPlayer) return;
+        if (characterController == null) return;
 
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
         float targetTurnAngle = Mathf.Atan2(lastInputDirection.x, lastInputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
