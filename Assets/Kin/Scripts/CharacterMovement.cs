@@ -15,8 +15,8 @@ public class CharacterMovement : NetworkBehaviour
     float verticalVelocity;
     float jumpHeight = 5f;
     float jumpSpeed;
-    float gravity = -70f;
-    float gravityModifier = 2f;
+    float gravity = -50f;
+    float gravityModifier = 1.8f;
     float maxFallSpeed = -40;
 
 
