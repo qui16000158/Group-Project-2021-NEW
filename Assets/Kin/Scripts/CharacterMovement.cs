@@ -16,7 +16,8 @@ public class CharacterMovement : NetworkBehaviour
     float jumpHeight = 5f;
     float jumpSpeed;
     float gravity = -70f;
-    float gravityModifier = 2.3f;
+    float gravityModifier = 2f;
+    float maxFallSpeed = -40;
 
 
 
@@ -97,9 +98,9 @@ public class CharacterMovement : NetworkBehaviour
         {
             verticalVelocity = -10f;
         }
-        else if (verticalVelocity > jumpSpeed/4 && !Input.GetKey(KeyCode.Space))
+        else if (verticalVelocity > jumpSpeed/3 && !Input.GetKey(KeyCode.Space))
         {
-            verticalVelocity = jumpSpeed / 4;
+            verticalVelocity = jumpSpeed / 3;
             print("short jump");
         }
         else if (verticalVelocity > 0)
@@ -108,13 +109,13 @@ public class CharacterMovement : NetworkBehaviour
         }
         else
         {
-            if (verticalVelocity > -60)
+            if (verticalVelocity > maxFallSpeed)
             {
                 verticalVelocity += gravity * gravityModifier * Time.deltaTime;
             }
             else
             {
-                verticalVelocity = -60;
+                verticalVelocity = maxFallSpeed;
             }
         }
 
