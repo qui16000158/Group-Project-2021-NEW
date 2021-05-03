@@ -13,12 +13,11 @@ public class CharacterMovement : NetworkBehaviour
 
     bool jumpInputted = false;
     float verticalVelocity;
-    float jumpHeight = 5f;
+    float jumpHeight = 4f;
     float jumpSpeed;
-    float gravity = -70f;
-    float gravityModifier = 2.3f;
-
-
+    float gravity = -50f;
+    float gravityModifier = 1.4f;
+    float maxFallSpeed = -40;
 
     /*
     Vector3 movementVelocity = Vector3.zero;
@@ -83,6 +82,7 @@ public class CharacterMovement : NetworkBehaviour
     private void FixedUpdate()
     {
         if (!isLocalPlayer) return;
+        if (characterController == null) return;
 
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
         float targetTurnAngle = Mathf.Atan2(lastInputDirection.x, lastInputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
@@ -97,10 +97,9 @@ public class CharacterMovement : NetworkBehaviour
         {
             verticalVelocity = -10f;
         }
-        else if (verticalVelocity > jumpSpeed/4 && !Input.GetKey(KeyCode.Space))
+        else if (verticalVelocity > jumpSpeed/3 && !Input.GetKey(KeyCode.Space))
         {
-            verticalVelocity = jumpSpeed / 4;
-            print("short jump");
+            verticalVelocity = jumpSpeed / 3;
         }
         else if (verticalVelocity > 0)
         {
@@ -108,13 +107,13 @@ public class CharacterMovement : NetworkBehaviour
         }
         else
         {
-            if (verticalVelocity > -60)
+            if (verticalVelocity > maxFallSpeed)
             {
                 verticalVelocity += gravity * gravityModifier * Time.deltaTime;
             }
             else
             {
-                verticalVelocity = -60;
+                verticalVelocity = maxFallSpeed;
             }
         }
 
