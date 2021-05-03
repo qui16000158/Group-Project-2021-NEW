@@ -14,7 +14,7 @@ public class Hazard : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isServer)
+        if (isServer && other.GetType() != typeof(CharacterController))
         {
             if (other.TryGetComponent(out IDamageable damageable))
             {

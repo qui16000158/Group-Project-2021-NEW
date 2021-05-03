@@ -60,13 +60,6 @@ public class CharacterMovement : NetworkBehaviour
             }
             return;
         }
-        else
-        {
-            if (TryGetComponent(out Collider col))
-            {
-                Destroy(col);
-            }
-        }
 
         cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
