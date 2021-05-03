@@ -13,13 +13,11 @@ public class CharacterMovement : NetworkBehaviour
 
     bool jumpInputted = false;
     float verticalVelocity;
-    float jumpHeight = 5f;
+    float jumpHeight = 4f;
     float jumpSpeed;
     float gravity = -50f;
-    float gravityModifier = 1.8f;
+    float gravityModifier = 1.4f;
     float maxFallSpeed = -40;
-
-
 
     /*
     Vector3 movementVelocity = Vector3.zero;
@@ -102,7 +100,6 @@ public class CharacterMovement : NetworkBehaviour
         else if (verticalVelocity > jumpSpeed/3 && !Input.GetKey(KeyCode.Space))
         {
             verticalVelocity = jumpSpeed / 3;
-            print("short jump");
         }
         else if (verticalVelocity > 0)
         {
