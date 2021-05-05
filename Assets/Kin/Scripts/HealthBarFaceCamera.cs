@@ -5,10 +5,19 @@ using UnityEngine;
 
 public class HealthBarFaceCamera : MonoBehaviour
 {
+    Camera cachedCamera;
+
     void Update()
     {
-        transform.LookAt(Camera.main.transform);
+        if (!cachedCamera)
+        {
+            cachedCamera = Camera.main;
+        }
+        else
+        {
+            transform.LookAt(cachedCamera.transform);
 
-        transform.eulerAngles += new Vector3(0, 180, 0);
+            transform.eulerAngles += new Vector3(0, 180, 0);
+        }
     }
 }

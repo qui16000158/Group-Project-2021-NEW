@@ -59,8 +59,6 @@ public class CharacterMovement : NetworkBehaviour
             return;
         }
 
-        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
-
         jumpSpeed = Mathf.Sqrt(-2 * gravity * jumpHeight); 
     }
 
