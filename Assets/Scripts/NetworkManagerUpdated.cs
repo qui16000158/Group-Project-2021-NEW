@@ -8,6 +8,17 @@ public class NetworkManagerUpdated : NetworkManager
     public static Dictionary<int, GameObject> playerObjects; // Used to store each player's game object
     public List<Transform> spawnPoints = new List<Transform>();
 
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+
+        // Ensure there are no duplicate cameras in the scene when the player leaves
+        foreach(GameObject camera in GameObject.FindGameObjectsWithTag("MainCamera"))
+        {
+            Destroy(camera);
+        }
+    }
+
     public override void OnStartHost()
     {
         base.OnStartHost();
