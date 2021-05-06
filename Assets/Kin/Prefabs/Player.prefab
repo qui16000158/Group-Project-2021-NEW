@@ -425,6 +425,7 @@ MonoBehaviour:
   syncInterval: 0.1
   camera: {fileID: 4695355134687365}
   cameraAnchor: {fileID: 2211257650713958571}
+  cameraSpeed: 0.4
 --- !u!1 &2659939550963624212
 GameObject:
   m_ObjectHideFlags: 0

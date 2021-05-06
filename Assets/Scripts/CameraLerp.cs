@@ -9,6 +9,8 @@ public class CameraLerp : NetworkBehaviour
     new Transform camera;
     [SerializeField]
     Transform cameraAnchor;
+    [SerializeField]
+    float cameraSpeed = 0.1f; // (1 is static)
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class CameraLerp : NetworkBehaviour
         Quaternion lastAng = camera.rotation;
         Quaternion wantedAng = cameraAnchor.rotation;
 
-        camera.position = Vector3.Slerp(lastPos, wantedPos, 0.1f);
-        camera.rotation = Quaternion.Slerp(lastAng, wantedAng, 0.1f);
+        camera.position = Vector3.Slerp(lastPos, wantedPos, cameraSpeed);
+        camera.rotation = Quaternion.Slerp(lastAng, wantedAng, cameraSpeed);
     }
 }
