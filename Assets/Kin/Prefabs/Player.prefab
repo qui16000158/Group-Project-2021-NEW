@@ -237,7 +237,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   characterController: {fileID: 5147873851496726}
-  cameraTransform: {fileID: 2211257650713958571}
+  cameraTransform: {fileID: 4695355134687365}
 --- !u!114 &5147873851496724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +425,7 @@ MonoBehaviour:
   syncInterval: 0.1
   camera: {fileID: 4695355134687365}
   cameraAnchor: {fileID: 2211257650713958571}
+  cameraSpeed: 0.1
 --- !u!1 &2659939550963624212
 GameObject:
   m_ObjectHideFlags: 0

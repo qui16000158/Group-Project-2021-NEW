@@ -19,6 +19,9 @@ public class CharacterMovement : NetworkBehaviour
     float gravityModifier = 1.4f;
     float maxFallSpeed = -40;
 
+    float xDir;
+    float zDir;
+
     /*
     Vector3 movementVelocity = Vector3.zero;
     float topMovementSpeed = 4f;
@@ -66,8 +69,8 @@ public class CharacterMovement : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
 
-        float xDir = Input.GetAxisRaw("Horizontal");
-        float zDir = Input.GetAxisRaw("Vertical");
+        xDir = Input.GetAxisRaw("Horizontal");
+        zDir = Input.GetAxisRaw("Vertical");
 
         InputDirection = new Vector3(xDir, 0f, zDir).normalized;
 
@@ -89,7 +92,10 @@ public class CharacterMovement : NetworkBehaviour
         Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         moveDirection = moveDirection.normalized;
 
-        transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
+        if (Mathf.Abs(xDir) > 0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
+        }
 
         if (characterController.isGrounded)
         {
