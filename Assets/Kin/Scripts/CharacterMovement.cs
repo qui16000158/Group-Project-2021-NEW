@@ -9,7 +9,10 @@ public class CharacterMovement : NetworkBehaviour
     public Transform cameraTransform;
 
     Vector3 currentVelocity;
-    float topVelocity = 8f;
+    float moveSpeed = 0;
+    public float targetSpeed = 8f;
+    public float acceleration = 1.5f;
+    public float friction = 4f;
 
     bool jumpInputted = false;
     float verticalVelocity;
@@ -22,17 +25,12 @@ public class CharacterMovement : NetworkBehaviour
     float xDir;
     float zDir;
 
-    /*
-    Vector3 movementVelocity = Vector3.zero;
-    float topMovementSpeed = 4f;
-    float groundAcceleration = 2f;
-    float groundDecceleration = 3f;
-    float airAcceleration = 2f;
-    float airDecceleration = 3f;
-    */
-
     float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+
+    Vector3 hitnormal;
+    float groundAngle;
+    float slideSpeed = 20f;
 
     Vector3 lastInputDirection;
     Vector3 _InputDirection;
@@ -65,6 +63,12 @@ public class CharacterMovement : NetworkBehaviour
         jumpSpeed = Mathf.Sqrt(-2 * gravity * jumpHeight); 
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        hitnormal = hit.normal;
+        print(hitnormal);
+    }
+
     void Update()
     {
         if (!isLocalPlayer) return;
@@ -85,6 +89,7 @@ public class CharacterMovement : NetworkBehaviour
         if (!isLocalPlayer) return;
         if (characterController == null) return;
 
+        //Move Direction
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
         float targetTurnAngle = Mathf.Atan2(lastInputDirection.x, lastInputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
 
@@ -125,17 +130,48 @@ public class CharacterMovement : NetworkBehaviour
 
         if (InputDirection.magnitude >= 0.3f)
         {
-            currentVelocity = (moveDirection * topVelocity);
+            if (new Vector2(currentVelocity.x, currentVelocity.z).magnitude < targetSpeed)
+            {
+                moveSpeed += acceleration;
+                
+
+                if (new Vector2(currentVelocity.x, currentVelocity.z).magnitude > targetSpeed)
+                {
+                    moveSpeed = targetSpeed;
+                }
+            }
         }
         else
         {
-            currentVelocity = Vector3.zero;
+            moveSpeed -= Mathf.Min(Mathf.Abs(moveSpeed), friction);
         }
 
+        currentVelocity = moveSpeed * moveDirection;
+
+        Slide();
+
         currentVelocity += (Vector3.up * verticalVelocity);
+
         characterController.Move(currentVelocity * Time.deltaTime);
 
   
+    }
+
+    void Slide()
+    {
+        groundAngle = Vector3.Angle(Vector3.up, hitnormal);
+
+        if (groundAngle > 90)
+        {
+            groundAngle = 90 - (groundAngle - 90);
+        }
+
+        if (characterController.isGrounded && groundAngle > 0.5f)
+        {
+
+            currentVelocity += hitnormal * groundAngle / 90 * slideSpeed;
+            verticalVelocity -= groundAngle / 90 * slideSpeed;
+        }
     }
 
     void Jump()
@@ -153,39 +189,3 @@ public class CharacterMovement : NetworkBehaviour
     }
 
 }
-/*        if (InputDirection.magnitude >= 0.3f)
-        {
-            if (movementVelocity.magnitude <= topMovementSpeed)
-            {
-                movementVelocity = moveDirection * (movementVelocity.magnitude + groundAcceleration);
-
-            }
-            else
-            {
-                movementVelocity = moveDirection * topMovementSpeed;
-            }
-
-            currentVelocity += movementVelocity;
-        }
-        
-        if (currentVelocity.magnitude > 0)
-        {
-            currentVelocity = Mathf.(currentVelocity - (currentVelocity.normalized * groundDecceleration));
-        }
-
-
-----
-
-
-        if (InputDirection.magnitude >= 0.3f)
-        {
-            movementVelocity = moveDirection * topVelocity;
-        }
-        else
-        {
-            movementVelocity = Vector3.zero;
-        }
-
-        currentVelocity += movementVelocity;
-        characterController.Move(currentVelocity * Time.deltaTime);
-*/
