@@ -63,6 +63,12 @@ public class Health : NetworkBehaviour, IDamageable
     {
         return HP;
     }
+
+    public void RestoreHealth()
+    {
+        HP = MaxHP;
+        UpdateHealthDisplay();
+    }
 #region EDITOR
 #if UNITY_EDITOR
     [ContextMenu("Take 25 damage")]

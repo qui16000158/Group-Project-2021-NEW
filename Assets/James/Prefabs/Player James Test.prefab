@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 1429847377504517230}
   - component: {fileID: 1429847377504517144}
   - component: {fileID: 2419935675708625397}
+  - component: {fileID: 1653167384582204262}
   m_Layer: 0
   m_Name: Player James Test
   m_TagString: Player
@@ -537,16 +538,27 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1429847377504517247}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1653167384582204262}
+        m_MethodName: RpcRespawn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1429847377504517148}
+        m_MethodName: RestoreHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   OnTakeDamage:
     m_PersistentCalls:
@@ -657,6 +669,20 @@ MonoBehaviour:
     type: 3}
   hand: {fileID: 1429847377504517243}
   throwStrength: 50
+--- !u!114 &1653167384582204262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429847377504517236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7877756911f63db46909283c1efccdba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &1429847377504517237
 GameObject:
   m_ObjectHideFlags: 0

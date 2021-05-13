@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7649548981487342988}
   - component: {fileID: 811583981140130796}
   - component: {fileID: 1910871499173305384}
+  - component: {fileID: 7513617186641358389}
   m_Layer: 0
   m_Name: Snowball
   m_TagString: Untagged
@@ -166,4 +167,17 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!135 &7513617186641358389
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118949372130258593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0100997
+  m_Center: {x: 0.00024280045, y: 0.000029424666, z: 2.0907486e-19}
