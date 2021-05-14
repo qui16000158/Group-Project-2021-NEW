@@ -59,6 +59,11 @@ public class Health : NetworkBehaviour, IDamageable
         }
     }
 
+    public void AddHealth(int amount)
+    {
+        TakeDamage(-amount);
+    }
+
     public int GetHealth()
     {
         return HP;
