@@ -17,6 +17,9 @@ public class Health : NetworkBehaviour, IDamageable
     [SerializeField]
     UnityEvent OnTakeDamage;
 
+    [SerializeField]
+    UnityEvent OnHeal;
+
     IHealthDisplay[] healthDisplays = null;
 
     void Start()
@@ -61,7 +64,18 @@ public class Health : NetworkBehaviour, IDamageable
 
     public void AddHealth(int amount)
     {
-        TakeDamage(-amount);
+        if (!(HP <= 0))
+            {
+            HP += amount;
+
+            if (HP > MaxHP)
+            {
+                HP = MaxHP;
+            }
+
+            UpdateHealthDisplay();
+            OnHeal.Invoke(); 
+        }
     }
 
     public int GetHealth()
