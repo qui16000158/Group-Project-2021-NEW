@@ -6,11 +6,20 @@ using UnityEngine.Events;
 
 public class EggCollectible : NetworkBehaviour
 {
-
-    public int healAmount = 50;
+    EggCount eggCounter;
+    
+    private void Awake()
+    {
+        eggCounter = GameObject.FindGameObjectWithTag("EggCount").GetComponent<EggCount>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
+        if (isServer && other.GetType() != typeof(CharacterController))
+        {
+            eggCounter.PickUpEgg();
+            Destroy(this.gameObject);
+        }
 
     }
 }

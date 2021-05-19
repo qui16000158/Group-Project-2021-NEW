@@ -153,7 +153,6 @@ public class CharacterMovement : NetworkBehaviour
         currentVelocity += (Vector3.up * verticalVelocity);
 
         characterController.Move(currentVelocity * Time.deltaTime);
-
   
     }
 
