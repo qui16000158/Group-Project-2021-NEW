@@ -11,14 +11,13 @@ GameObject:
   - component: {fileID: 3543989131879035630}
   - component: {fileID: 3543989131879035629}
   - component: {fileID: 3543989131879035628}
-  - component: {fileID: 3543989131879035631}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3543989131879035630
 Transform:
   m_ObjectHideFlags: 0
@@ -84,21 +83,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3543989131879035627}
   m_Enabled: 1
---- !u!114 &3543989131879035631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543989131879035627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf75495319fe3434cbc56daa42c296e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockCursor: 1
-  mouseSensitivity: 3
-  target: {fileID: 0}
-  dstFromTarget: 8
-  pitchMinMax: {x: -80, y: 85}
-  rotationSmoothTime: 0.12
