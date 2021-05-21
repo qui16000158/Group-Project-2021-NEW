@@ -6,6 +6,7 @@ using Mirror;
 public class CharacterMovement : NetworkBehaviour
 {
     public CharacterController characterController;
+    //public GameObject playerCamera;
     public Transform cameraTransform;
 
     Vector3 currentVelocity;
@@ -47,6 +48,14 @@ public class CharacterMovement : NetworkBehaviour
 
             _InputDirection = value;
         }
+    }
+
+    private void Awake()
+    {
+        //Instantiate(playerCamera, cameraTransform.position, Quaternion.identity);
+        /*
+        cameraTransform = Instantiate(playerCamera, cameraTransform.position, Quaternion.identity).transform;
+        cameraTransform.GetComponent<PlayerCamera>().SetTarget(this.gameObject);*/
     }
 
     void Start()
@@ -148,7 +157,7 @@ public class CharacterMovement : NetworkBehaviour
 
         currentVelocity = moveSpeed * moveDirection;
 
-        Slide();
+        //Slide();
 
         currentVelocity += (Vector3.up * verticalVelocity);
 

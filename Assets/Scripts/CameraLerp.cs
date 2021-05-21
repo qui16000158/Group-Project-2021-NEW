@@ -19,6 +19,7 @@ public class CameraLerp : NetworkBehaviour
         if (isLocalPlayer)
         {
             camera.gameObject.SetActive(true);
+            camera.GetComponent<PlayerCamera>().SetTarget(this.gameObject);
             camera.SetParent(null); // Detach the camera from the anchor
         }
     }
@@ -26,6 +27,7 @@ public class CameraLerp : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        /*
         Vector3 lastPos = camera.position;
         Vector3 wantedPos = cameraAnchor.position;
 
@@ -34,5 +36,6 @@ public class CameraLerp : NetworkBehaviour
 
         camera.position = Vector3.Slerp(lastPos, wantedPos, cameraSpeed);
         camera.rotation = Quaternion.Slerp(lastAng, wantedAng, cameraSpeed);
+        */
     }
 }
