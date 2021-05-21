@@ -18,6 +18,6 @@ public class EggCount : NetworkBehaviour
 
     private void Update()
     {
-        print(eggsFound);
+        //print(eggsFound);
     }
 }
