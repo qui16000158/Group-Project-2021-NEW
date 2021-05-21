@@ -106,10 +106,7 @@ public class CharacterMovement : NetworkBehaviour
         Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         moveDirection = moveDirection.normalized;
 
-        if (Mathf.Abs(xDir) > 0.1f)
-        {
-            transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
-        }
+        transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
 
         if (characterController.isGrounded)
         {
