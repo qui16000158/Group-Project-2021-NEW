@@ -796,10 +796,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockCursor: 1
-  mouseSensitivity: 10
+  mouseSensitivity: 4
   target: {fileID: 5147872707758391}
-  dstFromTarget: 4.5
-  pitchMinMax: {x: -40, y: 85}
+  dstFromTarget: 7
+  pitchMinMax: {x: -75, y: 85}
   rotationSmoothTime: 0.12
 --- !u!1 &6074903306156520122
 GameObject:
