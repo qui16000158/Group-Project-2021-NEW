@@ -799,6 +799,9 @@ MonoBehaviour:
   mouseSensitivity: 4
   target: {fileID: 5147872707758391}
   dstFromTarget: 7
+  solid:
+    serializedVersion: 2
+    m_Bits: 256
   pitchMinMax: {x: -75, y: 85}
   rotationSmoothTime: 0.12
 --- !u!1 &6074903306156520122
