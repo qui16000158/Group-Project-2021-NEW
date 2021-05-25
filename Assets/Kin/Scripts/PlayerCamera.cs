@@ -8,6 +8,7 @@ public class PlayerCamera : MonoBehaviour
 	public float mouseSensitivity = 10;
 	public Transform target;
 	public float dstFromTarget = 2;
+	public LayerMask solid;
 	public Vector2 pitchMinMax = new Vector2(-40, 85);
 
 	public float rotationSmoothTime = .12f;
@@ -42,5 +43,16 @@ public class PlayerCamera : MonoBehaviour
 
 		transform.position = target.position - transform.forward * dstFromTarget;
 
+		ObstacleCheck();
+	}
+
+	void ObstacleCheck()
+    {
+		RaycastHit hit;
+
+		if (Physics.Linecast(target.position, transform.position, out hit, solid))
+		{
+			transform.position = hit.point;
+		}
 	}
 }
