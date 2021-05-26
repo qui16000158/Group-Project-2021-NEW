@@ -14,12 +14,9 @@ public class EventOnTouch : NetworkBehaviour
     // Run an event if touching an object with the correct tag
     void OnTriggerEnter(Collider other)
     {
-        if (isServer)
+        if (other.tag == tag)
         {
-            if (other.tag == tag)
-            {
-                OnTouchEvent.Invoke();
-            }
+            OnTouchEvent.Invoke();
         }
     }
 }
