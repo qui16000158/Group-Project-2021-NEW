@@ -1845,6 +1845,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 596055634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &614226999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2420141023413103298, guid: 52304ad358f52374e81d36b047bbc0e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477787549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &614227001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614226999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95877b320a392df4cb6867075552deba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endEggCountText: {fileID: 2059923222}
 --- !u!1 &668890871
 GameObject:
   m_ObjectHideFlags: 0
@@ -4379,6 +4398,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4704268444379830466, guid: 52304ad358f52374e81d36b047bbc0e6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704268444379830466, guid: 52304ad358f52374e81d36b047bbc0e6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 4704268444379830466, guid: 52304ad358f52374e81d36b047bbc0e6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.395
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52304ad358f52374e81d36b047bbc0e6, type: 3}
 --- !u!1001 &1487250950
@@ -6127,16 +6161,16 @@ MonoBehaviour:
   OnTouchEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1980169003}
-        m_MethodName: Load
-        m_Mode: 5
+      - m_Target: {fileID: 1209940772}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: EndingScreen
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   tag: Player
 --- !u!114 &1980169003
