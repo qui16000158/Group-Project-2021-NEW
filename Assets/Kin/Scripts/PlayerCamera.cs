@@ -18,6 +18,8 @@ public class PlayerCamera : MonoBehaviour
 	float yaw;
 	float pitch;
 
+	bool pauseCamera;
+
 	void Start()
 	{
 		if (lockCursor)
@@ -32,8 +34,29 @@ public class PlayerCamera : MonoBehaviour
 		target = player.transform;
     }
 
+	public void PauseCameraMovement(bool pause)
+	{
+		if (pause)
+		{
+			pauseCamera = true;
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+		else
+		{
+			pauseCamera = false;
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+	}
+
 	void LateUpdate()
 	{
+		if (pauseCamera)
+		{
+			return; 
+		}
+
 		yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
 		pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
 		pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
