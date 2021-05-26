@@ -81,7 +81,7 @@ public class CharacterMovement : NetworkBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hitnormal = hit.normal;
-        print(hitnormal);
+        //print(hitnormal);
     }
 
     void Update()

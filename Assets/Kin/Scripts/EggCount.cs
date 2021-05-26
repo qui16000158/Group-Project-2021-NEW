@@ -8,10 +8,10 @@ using Mirror;
 public class EggCount : NetworkBehaviour
 {
     [SyncVar(hook = nameof(UpdateEggUI))]
-    int eggsFound = 0;
+    public int eggsFound = 0;
 
     [SyncVar]
-    int eggsInLevel = 5;
+    public int eggsInLevel = 5;
 
     public UnityEvent LevelComplete;
 
@@ -43,6 +43,11 @@ public class EggCount : NetworkBehaviour
     void UpdateEggUI(int oldValue, int newValue)
     {
         EggText.text = newValue + "/" + eggsInLevel;
+    }
+
+    public void UpdateEggUI()
+    {
+        EggText.text = eggsFound + "/" + eggsInLevel;
     }
 
     public void EndLevel()
