@@ -33,6 +33,8 @@ public class CharacterMovement : NetworkBehaviour
     float groundAngle;
     float slideSpeed = 20f;
 
+    bool pauseMovement = false;
+
     Vector3 lastInputDirection;
     Vector3 _InputDirection;
     Vector3 InputDirection
@@ -50,12 +52,16 @@ public class CharacterMovement : NetworkBehaviour
         }
     }
 
-    private void Awake()
+    public void PausePlayerMovement(bool pause)
     {
-        //Instantiate(playerCamera, cameraTransform.position, Quaternion.identity);
-        /*
-        cameraTransform = Instantiate(playerCamera, cameraTransform.position, Quaternion.identity).transform;
-        cameraTransform.GetComponent<PlayerCamera>().SetTarget(this.gameObject);*/
+        if (pause)
+        {
+            pauseMovement = true;
+        }
+        else
+        {
+            pauseMovement = false;
+        }
     }
 
     void Start()
@@ -97,6 +103,7 @@ public class CharacterMovement : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
         if (characterController == null) return;
+        if (pauseMovement) return;
 
         //Move Direction
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
