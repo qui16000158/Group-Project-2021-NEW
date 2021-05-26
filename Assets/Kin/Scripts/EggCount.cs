@@ -29,7 +29,7 @@ public class EggCount : NetworkBehaviour
     {
         if (isServer)
         {
-
+            eggsInLevel = GameObject.FindGameObjectsWithTag("Egg").Length;
         }
     }
 
