@@ -8,6 +8,8 @@ TagManager:
   - Water
   - EggCount
   - Checkpoint
+  - Egg
+  - Fish
   layers:
   - Default
   - TransparentFX

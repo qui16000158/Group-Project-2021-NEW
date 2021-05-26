@@ -7,9 +7,10 @@ using Mirror;
 
 public class EggCount : NetworkBehaviour
 {
-    [SyncVar]
+    [SyncVar(hook = nameof(UpdateEggUI))]
     int eggsFound = 0;
 
+    [SyncVar]
     int eggsInLevel = 5;
 
     public UnityEvent LevelComplete;
@@ -20,19 +21,28 @@ public class EggCount : NetworkBehaviour
 
     private void Start()
     {
-        UpdateEggUI();
+        CheckEggNumber();
+        UpdateEggUI(0, eggsFound);
+    }
+
+    void CheckEggNumber()
+    {
+        if (isServer)
+        {
+
+        }
     }
 
     public void PickUpEgg()
     {
         eggsFound += 1;
 
-        UpdateEggUI();
+        UpdateEggUI(0, eggsFound);
     }
 
-    void UpdateEggUI()
+    void UpdateEggUI(int oldValue, int newValue)
     {
-        EggText.text = eggsFound.ToString() + "/" + eggsInLevel.ToString();
+        EggText.text = newValue + "/" + eggsInLevel;
     }
 
     public void EndLevel()
