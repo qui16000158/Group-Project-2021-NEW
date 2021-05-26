@@ -8,6 +8,6 @@ public class SceneTransitioner : MonoBehaviour
     // A public method which allows us to load scenes from the UnityEvent inspector
     public void Load(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 }
