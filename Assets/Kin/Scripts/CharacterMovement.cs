@@ -23,6 +23,11 @@ public class CharacterMovement : NetworkBehaviour
     float gravityModifier = 1.4f;
     float maxFallSpeed = -40;
 
+    float landingJumpBufferTimePeriod = 0.15f;
+    float coyoteJumpTimePeriod = 0.2f;
+    float landingJumpBufferTimer = 0;
+    float coyoteJumpTimer = 0;
+
     float xDir;
     float zDir;
 
@@ -97,6 +102,29 @@ public class CharacterMovement : NetworkBehaviour
         {
             jumpInputted = true;
         }
+
+
+    }
+
+    void HandleTimers()
+    {
+        if (coyoteJumpTimer > 0)
+        {
+            coyoteJumpTimer -= Time.deltaTime;
+        }
+        else
+        {
+            coyoteJumpTimer = 0;
+        }
+
+        if (landingJumpBufferTimer > 0)
+        {
+            landingJumpBufferTimer -= Time.deltaTime;
+        }
+        else
+        {
+            landingJumpBufferTimer = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -104,6 +132,8 @@ public class CharacterMovement : NetworkBehaviour
         if (!isLocalPlayer) return;
         if (characterController == null) return;
         if (pauseMovement) return;
+
+        HandleTimers();
 
         //Move Direction
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
@@ -166,7 +196,7 @@ public class CharacterMovement : NetworkBehaviour
         currentVelocity += (Vector3.up * verticalVelocity);
 
         characterController.Move(currentVelocity * Time.deltaTime);
-  
+
     }
 
     void Slide()
@@ -195,8 +225,20 @@ public class CharacterMovement : NetworkBehaviour
                 //characterController.Move(jumpyVelocity * Vector3.up);
                 verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
             }
+            else
+            {
+                landingJumpBufferTimer = landingJumpBufferTimePeriod;
+            }
 
             jumpInputted = false;
+        }
+
+        if (landingJumpBufferTimer > 0 
+            && characterController.isGrounded)
+        {
+            verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+
+            landingJumpBufferTimer = 0;
         }
     }
 
