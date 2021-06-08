@@ -27,6 +27,7 @@ public class CharacterMovement : NetworkBehaviour
     float coyoteJumpTimePeriod = 0.2f;
     float landingJumpBufferTimer = 0;
     float coyoteJumpTimer = 0;
+    bool blockCoyoteJump = false;
 
     float xDir;
     float zDir;
@@ -39,6 +40,31 @@ public class CharacterMovement : NetworkBehaviour
     float slideSpeed = 20f;
 
     bool pauseMovement = false;
+
+    bool _IsOnGround;
+    bool IsOnGround
+    {
+        get { return _IsOnGround; }
+
+        set
+        {
+            if (_IsOnGround == value)
+            {
+                return;
+            }
+            
+            if (value == false)
+            {
+                coyoteJumpTimer = coyoteJumpTimePeriod;
+            }
+            else if (value == true)
+            {
+                blockCoyoteJump = false;
+            }
+
+            _IsOnGround = value;
+        }
+    }
 
     Vector3 lastInputDirection;
     Vector3 _InputDirection;
@@ -108,6 +134,8 @@ public class CharacterMovement : NetworkBehaviour
 
     void HandleTimers()
     {
+        IsOnGround = characterController.isGrounded;
+
         if (coyoteJumpTimer > 0)
         {
             coyoteJumpTimer -= Time.deltaTime;
@@ -224,6 +252,14 @@ public class CharacterMovement : NetworkBehaviour
             {
                 //characterController.Move(jumpyVelocity * Vector3.up);
                 verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+
+                blockCoyoteJump = true;
+            }
+            else if (coyoteJumpTimer > 0 && !blockCoyoteJump)
+            {
+                verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+
+                coyoteJumpTimer = 0;
             }
             else
             {
