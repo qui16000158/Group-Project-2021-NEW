@@ -18,6 +18,7 @@ public class SnowballThrow : NetworkBehaviour
     private void Start()
     {
         camera = Camera.main.transform;
+        Physics.IgnoreLayerCollision(9, 10); // Ignore collisions between players and snowballs
     }
 
     [Command]
@@ -38,7 +39,7 @@ public class SnowballThrow : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            CmdThrow(hand.position, camera.forward);
+            CmdThrow(hand.position, transform.forward);
         }
     }
 }
