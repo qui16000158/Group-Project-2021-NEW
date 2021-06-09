@@ -45,6 +45,8 @@ public class CharacterMovement : NetworkBehaviour
     public AudioClip walkSFX;
     public AudioClip jumpSFX;
 
+    public ParticleSystem landingParticles;
+
     bool pauseMovement = false;
 
     bool _IsOnGround;
@@ -62,10 +64,13 @@ public class CharacterMovement : NetworkBehaviour
             if (value == false)
             {
                 coyoteJumpTimer = coyoteJumpTimePeriod;
+                landingParticles.Play();
             }
             else if (value == true)
             {
                 blockCoyoteJump = false;
+
+                landingParticles.Play();
             }
 
             _IsOnGround = value;
