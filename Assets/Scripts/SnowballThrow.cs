@@ -15,10 +15,14 @@ public class SnowballThrow : NetworkBehaviour
 
     new Transform camera;
 
+    AudioSource ballSound;
+
     private void Start()
     {
         camera = Camera.main.transform;
         Physics.IgnoreLayerCollision(9, 10); // Ignore collisions between players and snowballs
+
+        ballSound = GetComponent<AudioSource>();
     }
 
     [Command]
@@ -29,6 +33,7 @@ public class SnowballThrow : NetworkBehaviour
         nextThrow = Time.time + 1.5f;
 
         GameObject snowBall = Instantiate(snowBallPrefab, spawnPos, Quaternion.identity);
+        ballSound.Play();
         NetworkServer.Spawn(snowBall);
         snowBall.GetComponent<Rigidbody>().velocity = normal * throwStrength;
     }

@@ -19,10 +19,13 @@ public class EggCount : NetworkBehaviour
     public TMP_Text EndEggText;
     public GameObject EndLevelUI;
 
+    AudioSource eggSound;
+
     private void Start()
     {
         CheckEggNumber();
         UpdateEggUI(0, eggsFound);
+        eggSound = GetComponent<AudioSource>();
     }
 
     void CheckEggNumber()
@@ -36,7 +39,7 @@ public class EggCount : NetworkBehaviour
     public void PickUpEgg()
     {
         eggsFound += 1;
-
+        eggSound.Play();
         UpdateEggUI(0, eggsFound);
     }
 
