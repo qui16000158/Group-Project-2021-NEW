@@ -11,6 +11,7 @@ public class SnowballThrow : NetworkBehaviour
     Transform hand; // The player's hand position
     [SerializeField]
     float throwStrength = 10.0f;
+    float nextThrow = 0.0f;
 
     new Transform camera;
 
@@ -22,6 +23,10 @@ public class SnowballThrow : NetworkBehaviour
     [Command]
     void CmdThrow(Vector3 spawnPos, Vector3 normal)
     {
+        if (Time.time < nextThrow) return;
+
+        nextThrow = Time.time + 1.5f;
+
         GameObject snowBall = Instantiate(snowBallPrefab, spawnPos, Quaternion.identity);
         NetworkServer.Spawn(snowBall);
         snowBall.GetComponent<Rigidbody>().velocity = normal * throwStrength;

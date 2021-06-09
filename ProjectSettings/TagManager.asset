@@ -10,6 +10,7 @@ TagManager:
   - Checkpoint
   - Egg
   - Fish
+  - Enemy
   layers:
   - Default
   - TransparentFX

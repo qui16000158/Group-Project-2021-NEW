@@ -22,6 +22,21 @@ public class Snowball : NetworkBehaviour
 
                 NetworkServer.Spawn(iceBlock);
             }
+            else if(other.tag == "Enemy")
+            {
+                Vector3 pos = other.transform.position;
+
+                Destroy(gameObject);
+
+                GameObject iceBlock = Instantiate(iceBlockPrefab, pos, Quaternion.identity);
+
+                other.transform.parent = iceBlock.transform;
+
+                other.GetComponent<Hazard>().enabled = false;
+                other.GetComponent<Animator>().enabled = false;
+
+                NetworkServer.Spawn(iceBlock);
+            }
         }
     }
 }
