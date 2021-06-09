@@ -11,11 +11,19 @@ public class SceneTransitioner : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
+    // This will exit the game.
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    // This will load a scene after a short delay (A public method allows it to be set in the inspector)
     public void LoadSceneDelayed(string sceneName)
     {
         StartCoroutine(LoadScene(sceneName));
     }
 
+    // This will load a scene after a short delay
     IEnumerator LoadScene(string sceneName)
     {
         yield return new WaitForSeconds(1);
