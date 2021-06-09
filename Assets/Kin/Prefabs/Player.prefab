@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 4721021253941867190}
   - component: {fileID: 9036607759865364371}
   - component: {fileID: 3807840796379881412}
+  - component: {fileID: 5114351843469379804}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -431,6 +432,22 @@ MonoBehaviour:
     type: 3}
   hand: {fileID: 2476588843477334869}
   throwStrength: 250
+--- !u!114 &5114351843469379804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147873851496723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 0}
 --- !u!95 &3835468515915879148
 Animator:
   serializedVersion: 3
@@ -1434,9 +1451,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb54d97350cf7f4099fe59556e95b36, type: 3}
---- !u!4 &335291539217505291 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbb54d97350cf7f4099fe59556e95b36,
+--- !u!1 &1147539723652204209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cbb54d97350cf7f4099fe59556e95b36,
     type: 3}
   m_PrefabInstance: {fileID: 228989366607657952}
   m_PrefabAsset: {fileID: 0}
@@ -1452,9 +1469,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 228989366607657952}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1147539723652204209 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cbb54d97350cf7f4099fe59556e95b36,
+--- !u!4 &335291539217505291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbb54d97350cf7f4099fe59556e95b36,
     type: 3}
   m_PrefabInstance: {fileID: 228989366607657952}
   m_PrefabAsset: {fileID: 0}
