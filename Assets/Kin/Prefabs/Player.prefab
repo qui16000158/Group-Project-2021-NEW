@@ -431,7 +431,7 @@ MonoBehaviour:
   snowBallPrefab: {fileID: 9118949372130258593, guid: f8e2191fb84f1134382f874dc25a4b78,
     type: 3}
   hand: {fileID: 2476588843477334869}
-  throwStrength: 250
+  throwStrength: 50
 --- !u!114 &5114351843469379804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 0
-  animator: {fileID: 0}
+  animator: {fileID: 3835468515915879148}
 --- !u!95 &3835468515915879148
 Animator:
   serializedVersion: 3
