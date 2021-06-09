@@ -37,10 +37,6 @@ public class Snowball : NetworkBehaviour
 
                 NetworkServer.Spawn(iceBlock);
             }
-            else if(other.tag == "Player")
-            {
-                Physics.IgnoreCollision(other, GetComponent<Collider>());
-            }
         }
     }
 }
