@@ -85,6 +85,7 @@ MonoBehaviour:
   targetSpeed: 8
   acceleration: 1.5
   friction: 4
+  playerAnim: {fileID: 3835468515915879148}
   walkSFX: {fileID: 8300000, guid: 06ce18b27d11b6a41aa2679d14974685, type: 3}
   jumpSFX: {fileID: 8300000, guid: 70f936b193b06a3438ebf6189e7bc7d5, type: 3}
 --- !u!114 &5147873851496724
@@ -1030,7 +1031,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cbb54d97350cf7f4099fe59556e95b36,
         type: 3}
       propertyPath: m_Name
-      value: idle
+      value: Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb54d97350cf7f4099fe59556e95b36, type: 3}

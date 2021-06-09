@@ -39,6 +39,8 @@ public class CharacterMovement : NetworkBehaviour
     float groundAngle;
     float slideSpeed = 20f;
 
+    public Animator playerAnim;
+
     AudioSource playerSounds;
     public AudioClip walkSFX;
     public AudioClip jumpSFX;
@@ -162,6 +164,27 @@ public class CharacterMovement : NetworkBehaviour
         }
     }
 
+    void HandleAnimations()
+    {
+        if (InputDirection.magnitude > 0.3f)
+        {
+            playerAnim.SetBool("walking", true);
+        }
+        else
+        {
+            playerAnim.SetBool("walking", false);
+        }
+
+        if (!characterController.isGrounded)
+        {
+            playerAnim.SetBool("inAir", true);
+        }
+        else
+        {
+            playerAnim.SetBool("inAir", false);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!isLocalPlayer) return;
@@ -169,6 +192,7 @@ public class CharacterMovement : NetworkBehaviour
         if (pauseMovement) return;
 
         HandleTimers();
+        HandleAnimations();
 
         //Move Direction
         float targetAngle = Mathf.Atan2(InputDirection.x, InputDirection.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
