@@ -10,4 +10,15 @@ public class SceneTransitioner : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
+
+    public void LoadSceneDelayed(string sceneName)
+    {
+        StartCoroutine(LoadScene(sceneName));
+    }
+
+    IEnumerator LoadScene(string sceneName)
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(sceneName);
+    }
 }
