@@ -39,6 +39,10 @@ public class CharacterMovement : NetworkBehaviour
     float groundAngle;
     float slideSpeed = 20f;
 
+    AudioSource playerSounds;
+    public AudioClip walkSFX;
+    public AudioClip jumpSFX;
+
     bool pauseMovement = false;
 
     bool _IsOnGround;
@@ -106,7 +110,10 @@ public class CharacterMovement : NetworkBehaviour
             return;
         }
 
-        jumpSpeed = Mathf.Sqrt(-2 * gravity * jumpHeight); 
+        jumpSpeed = Mathf.Sqrt(-2 * gravity * jumpHeight);
+
+        playerSounds = GetComponent<AudioSource>();
+        StartCoroutine(WalkSoundLoop());
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -205,6 +212,7 @@ public class CharacterMovement : NetworkBehaviour
             {
                 moveSpeed += acceleration;
                 
+                
 
                 if (new Vector2(currentVelocity.x, currentVelocity.z).magnitude > targetSpeed)
                 {
@@ -225,6 +233,20 @@ public class CharacterMovement : NetworkBehaviour
 
         characterController.Move(currentVelocity * Time.deltaTime);
 
+    }
+
+    IEnumerator WalkSoundLoop()
+    {
+        while (true)
+        {
+            if (InputDirection.magnitude >= 0.3f
+                && characterController.isGrounded)
+            {
+                playerSounds.PlayOneShot(walkSFX);
+            }
+
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 
     void Slide()
@@ -253,12 +275,14 @@ public class CharacterMovement : NetworkBehaviour
                 //characterController.Move(jumpyVelocity * Vector3.up);
                 verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
 
+                playerSounds.PlayOneShot(jumpSFX);
+
                 blockCoyoteJump = true;
             }
             else if (coyoteJumpTimer > 0 && !blockCoyoteJump)
             {
                 verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
-
+                playerSounds.PlayOneShot(jumpSFX);
                 coyoteJumpTimer = 0;
             }
             else
@@ -273,7 +297,7 @@ public class CharacterMovement : NetworkBehaviour
             && characterController.isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
-
+            playerSounds.PlayOneShot(jumpSFX);
             landingJumpBufferTimer = 0;
         }
     }
